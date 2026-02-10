@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Will You Be Mine 💖</title>
+
+<style>
+body{
+  margin:0;
+  font-family:Arial;
+  background:linear-gradient(135deg,#ff006e,#ff8fab);
+  color:white;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
+  overflow:hidden;
+}
+
+.box{
+  background:rgba(255,255,255,0.15);
+  padding:40px;
+  border-radius:20px;
+  text-align:center;
+  width:420px;
+  position:relative;
+}
+
+button{
+  padding:14px 26px;
+  font-size:18px;
+  border:none;
+  border-radius:30px;
+  cursor:pointer;
+  margin:10px;
+}
+
+.yes{ background:white; color:#ff006e; }
+.no{ background:#222; color:white; position:absolute; }
+</style>
+</head>
+
+<body>
+
+<div class="box" id="card">
+  <h1 id="title"></h1>
+  <p>You are the most special person in my life 💞</p>
+
+  <button class="yes" onclick="yes()">YES 💍</button>
+  <button class="no" id="noBtn">NO ❌</button>
+</div>
+
+<script>
+const url = new URLSearchParams(window.location.search);
+const me = url.get("me") || "Me";
+const love = url.get("love") || "My Love";
+
+document.getElementById("title").innerText =
+ love + ", Will You Be Mine Forever? 💖";
+
+/* NO BUTTON ESCAPE */
+const noBtn = document.getElementById("noBtn");
+document.addEventListener("mousemove", e=>{
+  const r=noBtn.getBoundingClientRect();
+  const dx=e.clientX-(r.left+r.width/2);
+  const dy=e.clientY-(r.top+r.height/2);
+  if(Math.sqrt(dx*dx+dy*dy)<120){
+    noBtn.style.left=Math.random()*300+"px";
+    noBtn.style.top=Math.random()*200+"px";
+  }
+});
+
+/* YES CLICK */
+function yes(){
+  card.innerHTML = `
+    <h1>💖 Happy Valentine’s Day ${love} 💖</h1>
+    <p>I love you forever ❤️</p>
+    <h3>— ${me}</h3>
+  `;
+}
+</script>
+
+</body>
+</html>
